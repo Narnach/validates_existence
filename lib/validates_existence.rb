@@ -23,7 +23,7 @@ module ActiveRecord
           send(validation_method(configuration[:on])) do |record|
             unless configuration[:if] && !evaluate_condition(configuration[:if], record)
               fk_value = record[assoc.primary_key_name]
-              unless fk_value.nil? && configuration[:allow_nil]
+              unless (fk_value.nil? && configuration[:allow_nil]) or (fk_value == 0 && configuration[:allow_zero])
                 if (foreign_type = assoc.options[:foreign_type]) # polymorphic
                   foreign_type_value = record[assoc.options[:foreign_type]]
                   if !foreign_type_value.blank?

@@ -3,8 +3,10 @@
 This plugin adds a new `validates_existence_of` method to `ActiveRecord::Base`.
 
 The `validates_existence_of` validator checks that a foreign key in a `belongs_to`
-association points to an existing record. If `:allow_nil => true`, then the key
-itself may be nil. A non-nil key requires that the foreign object must exist.
+association points to an existing record.
+If `:allow_nil => true`, then the key itself may be nil.
+If `:allow_zero => true`, then the key itself may be 0.
+Any other non-nil key requires that the foreign object must exist.
 Works with polymorphic `belongs_to`.
 
 The default error message is "does not exist".
